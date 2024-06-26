@@ -74,6 +74,7 @@ public class attack_Player : MonoBehaviour
     }
     public void setonattack()
     {
+        player_move.set_over_speed(0);
         delayattack = true;
         StartCoroutine(waitattack(speed_attack));
         animator.SetInteger("combo", attack_combo);
@@ -96,9 +97,6 @@ public class attack_Player : MonoBehaviour
 
             comboct = StartCoroutine(waitattackcombo(time_end_attack));
         }
-       
-        
-        player_move.can_movement = false;
         player_move.rig.velocity = new Vector2(0, player_move.rig.velocity.y);
     }
     public void setonattackair()
@@ -123,13 +121,12 @@ public class attack_Player : MonoBehaviour
     public void setendattack()
     {
         is_attack = false;
-        player_move.can_movement = true;
+        player_move.end_over_speed();
     }
-    public void setefskill()
+    public void setefskill(int n)
     {
-        Debug.Log(attack_combo);
         skill_effect.SetActive(true);
-        animation_skill.SetInteger("attack", attack_combo > 1?attack_combo-1:1);
-       
+        animation_skill.SetInteger("attack", n);
+        
     }
 }

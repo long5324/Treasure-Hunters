@@ -60,9 +60,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scenes\scrip\movement.cs" />
     <Compile Include="Assets\Scenes\scrip\groudcheck.cs" />
+    <Compile Include="Assets\Scenes\scrip\heath.cs" />
     <Compile Include="Assets\Scenes\scrip\attack_Player.cs" />
+    <Compile Include="Assets\Scenes\scrip\threat\state machine.cs" />
+    <Compile Include="Assets\Scenes\scrip\dame_machine.cs" />
     <Compile Include="Assets\Scenes\scrip\animator.cs" />
+    <Compile Include="Assets\Scenes\scrip\threat\attack.cs" />
+    <Compile Include="Assets\Scenes\scrip\item\iten_spaw.cs" />
     <Compile Include="Assets\Scenes\animation\animation skill\animator_skill.cs" />
+    <Compile Include="Assets\Scenes\scrip\nockback.cs" />
+    <Compile Include="Assets\Scenes\scrip\item\force_piece.cs" />
     <Compile Include="Assets\Scenes\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scenes\scrip\camerafolow.cs" />
   </ItemGroup>
