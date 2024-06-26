@@ -111,7 +111,7 @@ public class statemachine : MonoBehaviour
             rig.velocity = new Vector2(-transform.localScale.x*defaul_speed, rig.velocity.y);
             if (check_ground())
             {
-               
+                Debug.Log("ok");
                 rig.velocity = new Vector2(0, rig.velocity.y);
                 animator.SetBool("run", false);
                 state_threat = state.idel;

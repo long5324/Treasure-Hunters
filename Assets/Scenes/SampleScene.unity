@@ -464,7 +464,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e31b64267ffe7e247961b3b8dd67af4f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -541,6 +541,7 @@ MonoBehaviour:
     dir: {x: 0.86, y: 0.02}
     draw: 0
     foce_nock: {x: 3, y: 0}
+    foce_nock_death: {x: 5, y: 0}
     ev_after_nock:
       m_PersistentCalls:
         m_Calls: []
@@ -553,6 +554,7 @@ MonoBehaviour:
     dir: {x: 1.19, y: 0.16}
     draw: 0
     foce_nock: {x: 2, y: 2}
+    foce_nock_death: {x: 4, y: 4}
     ev_after_nock:
       m_PersistentCalls:
         m_Calls: []
@@ -565,6 +567,7 @@ MonoBehaviour:
     dir: {x: 1.19, y: 0.28}
     draw: 0
     foce_nock: {x: 3, y: 2}
+    foce_nock_death: {x: 5, y: 4}
     ev_after_nock:
       m_PersistentCalls:
         m_Calls: []
@@ -1836,10 +1839,58 @@ MonoBehaviour:
   curren_hp: 0
   event_dame:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1576917028}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: hit
+          m_BoolArgument: 0
+        m_CallState: 2
   event_death:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1576917028}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: death
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1576917022}
+        m_TargetAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+        m_MethodName: set_isTrigger
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1576917027}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   anti_nock: 0
 --- !u!61 &1576917022
 BoxCollider2D:
@@ -1953,7 +2004,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 19054e44d3f1ef44ab19dcd57ef89698, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

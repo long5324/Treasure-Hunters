@@ -17,12 +17,12 @@ public class heath : MonoBehaviour
             return;
         if(curren_hp > dame)
         curren_hp = curren_hp-dame;
-        else if(curren_hp<dame && curren_hp>0){
-        curren_hp=0;
+        else if(curren_hp<=dame && curren_hp>0){
+             curren_hp=0;
             event_death.Invoke();
+            return;
         }
-
-            event_dame.Invoke();
+        event_dame.Invoke();
 
     }
     public void destroy_object()
