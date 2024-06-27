@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class attack_Player : MonoBehaviour
 {
-
+    public bool has_sword = true;
     public float speed_attack;
     public float time_end_attack;
     public groudcheck check_air_attack;
+    public GameObject ob_throw_sword;
     bool delayattack;
     Coroutine comboct;
     public bool is_attack {set;get;}
@@ -24,6 +25,7 @@ public class attack_Player : MonoBehaviour
         animation_skill= skill_effect.GetComponent<Animator>();
         animator = GetComponent<Animator>();
         player_move = GetComponent<movement>();
+        
     }
 
     // Update is called once per frame
@@ -47,6 +49,10 @@ public class attack_Player : MonoBehaviour
                 }
             }
 
+        }
+        else if (Input.GetMouseButtonDown(1) && !delayattack)
+        {
+            animator.SetTrigger("throw");
         }
         if (attack_bombo_air == 2) { 
             if (player_move.check_ground.is_ground)
@@ -103,8 +109,15 @@ public class attack_Player : MonoBehaviour
     {
         player_move.set_over_speed(3);
         bounceplayer();
+        if(attack_bombo_air == 2)
+        {
+            animation_skill.SetInteger("attack", 5);
+        }
         if (attack_bombo_air < 2)
+        {
+            animation_skill.SetInteger("attack", 4);
             attack_bombo_air++;
+        }
         animator.SetInteger("comboair", attack_bombo_air);
        
     }
@@ -125,8 +138,19 @@ public class attack_Player : MonoBehaviour
     }
     public void setefskill(int n)
     {
-        skill_effect.SetActive(true);
+       
         animation_skill.SetInteger("attack", n);
         
+    }
+    public void throw_s()
+    {
+        ob_throw_sword.SetActive(true) ;
+        ob_throw_sword.transform.position = transform.position;
+        throw_sword ts = ob_throw_sword.GetComponent<throw_sword>();
+        if (ts != null)
+        {
+            ts.dir = (int)gameObject.transform.localScale.x;
+            ts.start_throw();
+        }
     }
 }

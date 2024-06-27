@@ -31,9 +31,6 @@ public class dame_machine : MonoBehaviour
     {
         
     }
-    private void Awake()
-    {
-    }
     public List<if_skill> list_skill = new List<if_skill>();
     public void OnDrawGizmos()
     {
@@ -59,11 +56,11 @@ public class dame_machine : MonoBehaviour
                 foreach(var hit in hits)
                 {
                    heath threat_heath = hit.gameObject.GetComponent<heath>();
-                    if(threat_heath != null)
+                    if(threat_heath != null && threat_heath.can_dame)
                     {
                         if(threat_heath.curren_hp > 0)
                         {
-                            threat_heath.dame_attack(item.dame);
+                           
                             Rigidbody2D rig_threat = hit.gameObject.GetComponent<Rigidbody2D>();
                             statemachine state_threat = hit.GetComponent<statemachine>();
                             if (rig_threat != null)
@@ -81,6 +78,7 @@ public class dame_machine : MonoBehaviour
                                 else
                                 rig_threat.velocity = new Vector2((item.foce_nock.x - threat_heath.anti_nock) * transform.localScale.x, item.foce_nock.y-threat_heath.anti_nock);
                             }
+                            threat_heath.dame_attack(item.dame);
 
                         }
                     }

@@ -13,7 +13,7 @@ public class animator_skill : MonoBehaviour
     public void endattack()
     {
         amsk.SetInteger("attack", 0);
-        gameObject.SetActive(false);
+        
     }
     // Update is called once per frame
     void Update()
