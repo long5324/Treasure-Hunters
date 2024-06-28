@@ -19,12 +19,12 @@ public class dame_machine : MonoBehaviour
        public Vector2 size;
        public Vector2 dir;
        public bool draw;
+        public float time_cc;
        [Space(10)]
        [Header("nockback_machine")]
         public Vector2 foce_nock;
         public Vector2 foce_nock_death;
-        public UnityEvent ev_after_nock;
-       public UnityEvent ev_before_nock;
+
     }
     [System.Serializable]
     public struct if_nockback
@@ -68,7 +68,7 @@ public class dame_machine : MonoBehaviour
                                 if(state_threat!= null)
                                 {
                                     state_threat.delay = true;
-                                    StartCoroutine(ResetDelay(state_threat, 1f));
+                                    StartCoroutine(ResetDelay(state_threat, item.time_cc-threat_heath.anti_nock));
                                 }
                                 rig_threat.velocity = new Vector2(0,rig_threat.velocity.y);
                                 if(threat_heath.curren_hp <= item.dame)

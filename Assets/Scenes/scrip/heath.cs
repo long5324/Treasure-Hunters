@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -14,6 +14,7 @@ public class heath : MonoBehaviour
     public float anti_nock;
     public float time_wait_attack;
     public bool can_dame { get; set; }
+    SpriteRenderer rend;
     public void dame_attack(float dame)
     {
         
@@ -23,7 +24,14 @@ public class heath : MonoBehaviour
         {
             curren_hp = curren_hp - dame;
             can_dame = false;
-            StartCoroutine(wait_dame(time_wait_attack));
+            if (rend != null)
+            {
+                float endAlpha = 0.8f;  // Giá trị alpha mục tiêu là 50%
+                Color originalColor = rend.material.color;
+                Color newColor = new Color(originalColor.r, originalColor.g, originalColor.b, endAlpha);
+                rend.material.color = newColor;
+                StartCoroutine(wait_dame(time_wait_attack, originalColor));
+            }
         }
         else if (curren_hp <= dame && curren_hp > 0)
         {
@@ -32,7 +40,6 @@ public class heath : MonoBehaviour
             return;
         }
         event_dame.Invoke();
-
     }
     public void destroy_object()
     {
@@ -43,16 +50,18 @@ public class heath : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Destroy(gameObject);
     }
-    public IEnumerator wait_dame(float waitTime)
+    public IEnumerator wait_dame(float waitTime ,Color cl)
     {
         yield return new WaitForSeconds(waitTime);
         can_dame = true;
+        rend.material.color = cl;
     }
     // Start is called before the first frame update
     private void Awake()
     {
         curren_hp = max_hp;
         can_dame = true;
+        rend = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame

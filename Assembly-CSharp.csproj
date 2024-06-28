@@ -66,7 +66,7 @@
     <Compile Include="Assets\Scenes\scrip\threat\state machine.cs" />
     <Compile Include="Assets\Scenes\scrip\dame_machine.cs" />
     <Compile Include="Assets\Scenes\scrip\animator.cs" />
-    <Compile Include="Assets\Scenes\scrip\threat\attack.cs" />
+    <Compile Include="Assets\Scenes\scrip\threat\threat_attack.cs" />
     <Compile Include="Assets\Scenes\scrip\item\iten_spaw.cs" />
     <Compile Include="Assets\Scenes\scrip\nockback.cs" />
     <Compile Include="Assets\Scenes\scrip\animator_skill.cs" />

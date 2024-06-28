@@ -23,39 +23,7 @@ public class throw_sword : MonoBehaviour
     {
         transform.localScale = new Vector2(dir, 1);
         rb.velocity = new Vector2 (speed*dir, 0);
-    }
-
-
-            /*heath threat_heath = collision.gameObject.GetComponent<heath>();
-            if (threat_heath != null)
-            {
-                if (threat_heath.curren_hp > 0)
-                {
-
-                    Rigidbody2D rig_threat = collision.gameObject.GetComponent<Rigidbody2D>();
-                    statemachine state_threat = collision.GetComponent<statemachine>();
-                    if (rig_threat != null)
-                    {
-                        if (state_threat != null)
-                        {
-                            state_threat.delay = true;
-                            StartCoroutine(ResetDelay(state_threat, 1f));
-                        }
-                        rig_threat.velocity = new Vector2(0, rig_threat.velocity.y);
-                        if (threat_heath.curren_hp <= dame)
-                        {
-                            rig_threat.velocity = new Vector2((force_nock.x - threat_heath.anti_nock) * dir, force_nock.y - threat_heath.anti_nock);
-                        }
-                        else
-                            rig_threat.velocity = new Vector2((force_nock_death.x - threat_heath.anti_nock) * dir, force_nock_death.y - threat_heath.anti_nock);
-                    }
-                    threat_heath.dame_attack(dame);
-
-                }
-            }*/
-
-        
-    
+    } 
     private void OnTriggerStay2D(Collider2D other)
     {
         // Kiểm tra nếu đối tượng có layer là "map"

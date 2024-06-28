@@ -12,7 +12,6 @@ public class attack_Player : MonoBehaviour
     bool delayattack;
     Coroutine comboct;
     public bool is_attack {set;get;}
-
     public GameObject skill_effect;
      Animator animation_skill;
 
@@ -25,12 +24,13 @@ public class attack_Player : MonoBehaviour
         animation_skill= skill_effect.GetComponent<Animator>();
         animator = GetComponent<Animator>();
         player_move = GetComponent<movement>();
-        
+        animator.SetBool("has_sword", has_sword);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!has_sword) return;
         if (Input.GetMouseButtonDown(0) && !delayattack)
         {
 
@@ -152,5 +152,7 @@ public class attack_Player : MonoBehaviour
             ts.dir = (int)gameObject.transform.localScale.x;
             ts.start_throw();
         }
+        has_sword = false;
+        animator.SetBool("has_sword", has_sword);
     }
 }

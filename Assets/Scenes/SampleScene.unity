@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 638664692}
   - component: {fileID: 638664693}
   - component: {fileID: 638664690}
+  - component: {fileID: 638664695}
   - component: {fileID: 638664694}
   m_Layer: 7
   m_Name: Player
@@ -515,7 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31dfdab498298488ee76ea728bd53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  has_sword: 0
+  has_sword: 1
   speed_attack: 0.5
   time_end_attack: 1
   check_air_attack: {fileID: 708365625}
@@ -542,40 +543,47 @@ MonoBehaviour:
     size: {x: 1.82, y: 0.92}
     dir: {x: 0.86, y: 0.02}
     draw: 0
-    foce_nock: {x: 3, y: 0}
+    time_cc: 1.3
+    foce_nock: {x: 5, y: 0}
     foce_nock_death: {x: 5, y: 5}
-    ev_after_nock:
-      m_PersistentCalls:
-        m_Calls: []
-    ev_before_nock:
-      m_PersistentCalls:
-        m_Calls: []
   - name_skill: a2
     dame: 2
     size: {x: 2.28, y: 1.31}
     dir: {x: 1.19, y: 0.16}
     draw: 0
-    foce_nock: {x: 2, y: 2}
+    time_cc: 1.3
+    foce_nock: {x: 5, y: 5}
     foce_nock_death: {x: 4, y: 4}
-    ev_after_nock:
-      m_PersistentCalls:
-        m_Calls: []
-    ev_before_nock:
-      m_PersistentCalls:
-        m_Calls: []
   - name_skill: a3
     dame: 3
     size: {x: 2.59, y: 1.43}
     dir: {x: 1.19, y: 0.28}
     draw: 0
+    time_cc: 1.5
     foce_nock: {x: 3, y: 2}
     foce_nock_death: {x: 5, y: 4}
-    ev_after_nock:
-      m_PersistentCalls:
-        m_Calls: []
-    ev_before_nock:
-      m_PersistentCalls:
-        m_Calls: []
+--- !u!114 &638664695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638664684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8242950f6ff9cee439182fed1db0efba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_hp: 10
+  curren_hp: 0
+  event_dame:
+    m_PersistentCalls:
+      m_Calls: []
+  event_death:
+    m_PersistentCalls:
+      m_Calls: []
+  anti_nock: 1
+  time_wait_attack: 1
 --- !u!1 &708365623
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +595,7 @@ GameObject:
   - component: {fileID: 708365624}
   - component: {fileID: 708365626}
   - component: {fileID: 708365625}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: check_air_attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1894,7 +1902,7 @@ GameObject:
   - component: {fileID: 1502703773}
   - component: {fileID: 1502703774}
   - component: {fileID: 1502703775}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: animationskill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2016,8 +2024,8 @@ GameObject:
   - component: {fileID: 1576917021}
   - component: {fileID: 1576917026}
   - component: {fileID: 1576917028}
-  - component: {fileID: 1576917029}
   - component: {fileID: 1576917027}
+  - component: {fileID: 1576917030}
   m_Layer: 6
   m_Name: craby
   m_TagString: Untagged
@@ -2093,7 +2101,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  anti_nock: 0
+      - m_Target: {fileID: 1576917023}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody2D, UnityEngine
+        m_MethodName: set_gravityScale
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  anti_nock: 1
   time_wait_attack: 0.7
 --- !u!61 &1576917022
 BoxCollider2D:
@@ -2155,8 +2175,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_GravityScale: 3
+  m_Material: {fileID: 6200000, guid: b256b4dc673185c4caadb1c5e89292ce, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2265,18 +2285,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce40492e89740e4f95ed6f35b726c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMaskplayer:
+    serializedVersion: 2
+    m_Bits: 128
   layer_map:
     serializedVersion: 2
     m_Bits: 8
-  size_way: {x: 5.84, y: 0.39}
   time_idel: 0
   defaul_speed: 3
   max_speed: 0
+  draw_vision: 0
+  size_vision: {x: 4.73, y: 0.7}
+  dir_vision: {x: -2.12, y: 0}
+  draw_attack_vison: 0
+  size_attack_vision: {x: 11.93, y: 0.4}
+  dir_attack_vision: {x: 0, y: 0}
+  draw_attack: 1
+  size_attack: {x: 1.08, y: 0.83}
+  dir_attack: {x: -0.7, y: -0.02}
   ground_checkboxes:
   - name: check_horizontal
     draw: 0
     size: {x: 0.46, y: 0.33}
-    dir: {x: -0.37, y: -0.02}
+    dir: {x: -0.22, y: -0.02}
   - name: check_vertical
     draw: 0
     size: {x: 0.18, y: 0.84}
@@ -2302,7 +2333,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1576917029
+--- !u!114 &1576917030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2314,6 +2345,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88876e72dd6360e48811c2a19e02649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMaskPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  threat_attack:
+  - name: collision
+    dame: 1
+    size: {x: 0.58, y: 0.64}
+    dir: {x: 0.05, y: -0.04}
+    draw: 0
+    force_nock: {x: 6, y: 6}
+    force_death: {x: 4, y: 4}
+    time_cc: 1.5
 --- !u!1 &1678398049
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,7 +2450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1857104807}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2438,7 +2481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1916748082}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: camerafl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2559,7 +2602,7 @@ GameObject:
   - component: {fileID: 2126387882}
   - component: {fileID: 2126387884}
   - component: {fileID: 2126387883}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ground_check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
