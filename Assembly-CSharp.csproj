@@ -58,23 +58,19 @@
     <Analyzer Include="D:\Program Files\2022.3.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scenes\scrip\InputPlayer.cs" />
-    <Compile Include="Assets\Scenes\scrip\movement.cs" />
-    <Compile Include="Assets\Scenes\scrip\groudcheck.cs" />
-    <Compile Include="Assets\Scenes\scrip\heath.cs" />
-    <Compile Include="Assets\Scenes\scrip\attack_Player.cs" />
-    <Compile Include="Assets\Scenes\scrip\throw_sword.cs" />
+    <Compile Include="Assets\Scenes\scrip\Player\dame_machine.cs" />
+    <Compile Include="Assets\Scenes\scrip\Player\groudcheck.cs" />
     <Compile Include="Assets\Scenes\scrip\threat\state machine.cs" />
-    <Compile Include="Assets\Scenes\scrip\dame_machine.cs" />
-    <Compile Include="Assets\Scenes\scrip\animator.cs" />
-    <Compile Include="Assets\Scenes\scrip\data\ThreatData.cs" />
     <Compile Include="Assets\Scenes\scrip\threat\threat_attack.cs" />
+    <Compile Include="Assets\Scenes\scrip\Player\throw_sword.cs" />
     <Compile Include="Assets\Scenes\scrip\item\iten_spaw.cs" />
-    <Compile Include="Assets\Scenes\scrip\nockback.cs" />
-    <Compile Include="Assets\Scenes\scrip\animator_skill.cs" />
+    <Compile Include="Assets\Scenes\scrip\Player\animator.cs" />
+    <Compile Include="Assets\Scenes\scrip\Player\movement.cs" />
+    <Compile Include="Assets\Scenes\scrip\Player\animator_skill.cs" />
     <Compile Include="Assets\Scenes\scrip\item\force_piece.cs" />
+    <Compile Include="Assets\Scenes\scrip\Player\attack_Player.cs" />
     <Compile Include="Assets\Scenes\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scenes\scrip\camerafolow.cs" />
+    <Compile Include="Assets\Scenes\scrip\data\heath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

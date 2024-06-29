@@ -23,7 +23,7 @@ public class attack : MonoBehaviour
         public float time_cc;
     }
     public List<attack_if> threat_attack;
-
+   
     public void OnDrawGizmos()
     {
         foreach (var item in threat_attack)
@@ -71,7 +71,8 @@ public class attack : MonoBehaviour
                 }
             }
         }
-        }
+      }
+
     void Attack_check()
     {
         foreach (var item in threat_attack)

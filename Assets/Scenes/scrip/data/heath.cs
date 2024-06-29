@@ -13,8 +13,10 @@ public class heath : MonoBehaviour
     public UnityEvent event_death;
     public float anti_nock;
     public float time_wait_attack;
+    public float time_wait_destroy;
     public bool can_dame { get; set; }
     SpriteRenderer rend;
+
     public void dame_attack(float dame)
     {
         
@@ -43,7 +45,7 @@ public class heath : MonoBehaviour
     }
     public void destroy_object()
     {
-        StartCoroutine(destroy_wait(5f));
+        StartCoroutine(destroy_wait(time_wait_destroy));
     }
    public IEnumerator destroy_wait(float waitTime)
     {
@@ -65,8 +67,5 @@ public class heath : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

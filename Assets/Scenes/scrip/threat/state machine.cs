@@ -10,7 +10,7 @@ using static UnityEditor.Progress;
 
 public class statemachine : MonoBehaviour
 {
-    public GameObject tagert;
+     GameObject tagert;
     public Animator effect_skill;
     public LayerMask layerMaskplayer;
     public LayerMask layer_map;
@@ -35,6 +35,7 @@ public class statemachine : MonoBehaviour
     public bool now_attack { get; set; }
     Rigidbody2D rig;
     Animator animator;
+    public bool on_attack { get; set; }
     public bool delay { set; get; }
     [System.Serializable]
     public struct vision_check_player
@@ -58,7 +59,7 @@ public class statemachine : MonoBehaviour
     private void Awake()
     {
         state_threat = state.takeaway;
-
+        tagert = GameObject.Find("Player");
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -92,10 +93,6 @@ public class statemachine : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
     void take_a_way()
     {
         if (rig != null)
@@ -110,6 +107,15 @@ public class statemachine : MonoBehaviour
     public void trans_state_attack()
     {
         state_threat = state.run;
+    }
+    public void trans_state_idel()
+    {
+        state_threat = state.idel;
+        on_attack = false;
+        rig.velocity = new Vector2(0, rig.velocity.y);
+        animator.SetBool("attack_end", false);
+        dir_attack = 0;
+        now_attack = false;
     }
     public bool check_ground()
     {
@@ -135,10 +141,11 @@ public class statemachine : MonoBehaviour
         }
         return false;
     }
+    int dir_attack = 0;
     // Update is called once per frame
     private void LateUpdate()
     {
-
+        Debug.Log(state_threat);
         if (delay)
         {
             return;
@@ -192,17 +199,41 @@ public class statemachine : MonoBehaviour
             animator.SetBool("run", false);
             if (!check_attack() && !now_attack )
             {
-                Debug.Log(1);
                 state_threat = state.run;
             }
             if (!now_attack&& check_attack())
             {
                 now_attack = true;
                 animator.SetTrigger("attack");
-                
             }
+            if (on_attack)
+            {
+                
+                if (dir_attack == 0)
+                {
+                    dir_attack = tagert.transform.position.x > transform.position.x ? 1 : -1;
+                }
+                transform.localScale = new Vector2(dir_attack, transform.localScale.y);
+                rig.velocity = new Vector2(max_speed * 2 * dir_attack, rig.velocity.y);
+                if (check_ground())
+                {
+                    on_attack = false;
+                    rig.velocity = new Vector2(0, rig.velocity.y);
+                    animator.SetBool("attack_end", false);
+                    dir_attack = 0;
+                    now_attack = false;
+                    state_threat = state.idel;
+                }
+            }
+
         }
        
+    }
+
+    public void Start_attack_start_pink()
+    {
+        on_attack = true;
+        animator.SetBool("attack_end",true);    
     }
     bool vision_check()
     {
@@ -243,4 +274,5 @@ public class statemachine : MonoBehaviour
     {
         effect_skill.SetTrigger("attack");
     }
+  
 }
