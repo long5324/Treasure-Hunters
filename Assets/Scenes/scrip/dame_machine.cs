@@ -12,13 +12,13 @@ public class dame_machine : MonoBehaviour
     public LayerMask layerMaskthreat;
    
     [System.Serializable]
-   public struct if_skill {
+   public class if_skill {
         [Header("info_skill")]
         public string name_skill;
        public float dame ;
        public Vector2 size;
        public Vector2 dir;
-       public bool draw;
+       public bool draw = false;
         public float time_cc;
        [Space(10)]
        [Header("nockback_machine")]

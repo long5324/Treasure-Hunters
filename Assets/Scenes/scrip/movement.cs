@@ -31,7 +31,7 @@ public class movement : MonoBehaviour
       if (delay_move) return;
       x= (int)Input.GetAxisRaw("Horizontal");
       y= (int)Input.GetAxisRaw("Vertical");
-        bool ac = Input.GetKey(KeyCode.LeftShift);
+      bool ac = Input.GetKey(KeyCode.LeftShift);
         if(can_movement)
             if (!is_set_over_speed)
         if (!ac)

@@ -2,12 +2,16 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 
 public class statemachine : MonoBehaviour
 {
+    public GameObject tagert;
+    public Animator effect_skill;
     public LayerMask layerMaskplayer;
     public LayerMask layer_map;
     public float time_idel;
@@ -15,18 +19,20 @@ public class statemachine : MonoBehaviour
     public float max_speed;
     [Space(10)]
     [Header("set up vison")]
-    public bool draw_vision;
+    public bool draw_vision = false;
     public Vector2 size_vision;
     public Vector2 dir_vision;
     [Space(10)]
     [Header("set up attack")]
-    GameObject tagert;
-    public bool draw_attack_vison;
+    public bool draw_attack_vison=false;
     public Vector2 size_attack_vision;
     public Vector2 dir_attack_vision;
-    public bool draw_attack;
-    public Vector2 size_attack;
-    public Vector2 dir_attack;
+    [Space(10)]
+    [Header("attack")]
+    public bool draw_fl_attack = false;
+    public Vector2 size_fl_attack;
+    public Vector2 dir_fl_attack;
+    public bool now_attack { get; set; }
     Rigidbody2D rig;
     Animator animator;
     public bool delay { set; get; }
@@ -37,6 +43,24 @@ public class statemachine : MonoBehaviour
         public bool draw;
         public Vector2 size;
         public Vector2 dir;
+    }
+    public enum state
+    {
+        takeaway,
+        idel,
+        run,
+        attack,
+        hit,
+        death,
+    }
+    state state_threat = new state();
+
+    private void Awake()
+    {
+        state_threat = state.takeaway;
+
+        rig = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     public List<vision_check_player> ground_checkboxes;
     private void OnDrawGizmos()
@@ -59,30 +83,14 @@ public class statemachine : MonoBehaviour
             Gizmos.color = UnityEngine.Color.red;
             Gizmos.DrawWireCube(new Vector2(transform.position.x + dir_attack_vision.x * transform.localScale.x, transform.position.y + dir_attack_vision.y), size_attack_vision);
         }
-        if (draw_attack)
+        if (draw_fl_attack)
         {
             Gizmos.color = UnityEngine.Color.red;
-            Gizmos.DrawWireCube(new Vector2(transform.position.x + dir_attack.x * transform.localScale.x, transform.position.y + dir_attack.y), size_attack);
+            Gizmos.DrawWireCube(new Vector2(transform.position.x + dir_fl_attack.x * transform.localScale.x, transform.position.y + dir_fl_attack.y), size_fl_attack); ;
         }
     }
 
-    public enum state
-    {
-        takeaway,
-        idel,
-        run,
-        attack,
-        hit,
-        death,
-    }
-    state state_threat;
-    private void Awake()
-    {
-        state_threat = state.takeaway;
 
-        rig = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +106,10 @@ public class statemachine : MonoBehaviour
     public void trans_state(state state)
     {
         state_threat = state;
+    }
+    public void trans_state_attack()
+    {
+        state_threat = state.run;
     }
     public bool check_ground()
     {
@@ -116,7 +128,7 @@ public class statemachine : MonoBehaviour
             {
                 if (hits.Length == 0)
                 {
-
+                    return true;
                 }
             }
 
@@ -124,13 +136,6 @@ public class statemachine : MonoBehaviour
         return false;
     }
     // Update is called once per frame
-    void Update()
-    {
-        if (state_threat == state.takeaway)
-        {
-            vision_check();
-        }
-    }
     private void LateUpdate()
     {
 
@@ -140,6 +145,9 @@ public class statemachine : MonoBehaviour
         }
         if (state_threat == state.takeaway)
         {
+            if (vision_check()) {
+                state_threat = state.run;
+            }
             if (animator != null)
             {
                 animator.SetBool("run", true);
@@ -147,35 +155,92 @@ public class statemachine : MonoBehaviour
             rig.velocity = new Vector2(-transform.localScale.x * defaul_speed, rig.velocity.y);
             if (check_ground())
             {
-
                 rig.velocity = new Vector2(0, rig.velocity.y);
-                animator.SetBool("run", false);
                 state_threat = state.idel;
                 animator.SetTrigger("idel");
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
 
         }
+        else if(state_threat == state.idel){
+            animator.SetBool("run", false);
+            if (vision_check())
+            {
+                state_threat = state.run;
+            }
+
+        }
+        else if (state_threat == state.run)
+        {
+            animator.SetBool("run", true);
+            int dir = tagert.transform.position.x>transform.position.x?  1 :-1;
+            transform.localScale = new Vector3(-dir, transform.localScale.y, transform.localScale.z);
+            rig.velocity= new Vector2(max_speed*dir,rig.velocity.y);
+            if (check_attack())
+            {
+                rig.velocity = new Vector2(0, rig.velocity.y);
+                state_threat = state.attack;
+            }
+            if (!vision_check_attack())
+            {
+              
+                state_threat = state.takeaway;
+            }
+        }
         else if (state_threat == state.attack)
         {
-            Collider2D[] hits = Physics2D.OverlapBoxAll(new Vector2(transform.localScale.x * dir_attack_vision.x, dir_attack_vision.y) + (Vector2)gameObject.transform.position, size_attack_vision, 0f, layerMaskplayer);
-           if(h)
-            if (tagert == null)
+            animator.SetBool("run", false);
+            if (!check_attack() && !now_attack )
             {
-                foreach (var other in hits)
-                {
-                    tagert = other.gameObject;
-                }
+                Debug.Log(1);
+                state_threat = state.run;
+            }
+            if (!now_attack&& check_attack())
+            {
+                now_attack = true;
+                animator.SetTrigger("attack");
+                
             }
         }
        
     }
-    void vision_check()
+    bool vision_check()
     {
         Collider2D[] hits = Physics2D.OverlapBoxAll(new Vector2(transform.localScale.x * dir_vision.x, dir_vision.y) + (Vector2)gameObject.transform.position, size_vision, 0f, layerMaskplayer);
         if (hits.Length > 0)
         {
-            state_threat = state.attack;
+            return true;
         }
+        return false;
+    }
+      bool vision_check_attack()
+    {
+        Collider2D[] hits = Physics2D.OverlapBoxAll(new Vector2(transform.localScale.x * dir_attack_vision.x, dir_attack_vision.y) + (Vector2)gameObject.transform.position, size_attack_vision, 0f, layerMaskplayer);
+        if (hits.Length > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    bool check_attack()
+    {
+        Collider2D[] hits = Physics2D.OverlapBoxAll(new Vector2(transform.localScale.x * dir_fl_attack.x, dir_fl_attack.y) + (Vector2)gameObject.transform.position, size_fl_attack, 0f, layerMaskplayer);
+        if (hits.Length > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void SetAttack(bool i)
+    {
+        now_attack = i;
+    }
+    public void EndAttack()
+    {
+        now_attack = false;
+    }
+    public void OnEffectSkill()
+    {
+        effect_skill.SetTrigger("attack");
     }
 }
