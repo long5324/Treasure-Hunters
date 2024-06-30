@@ -184,7 +184,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7083244888089757616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,43 +229,20 @@ MonoBehaviour:
           m_StringArgument: death
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4160368938381448577}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: death
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4970995117228425933}
-        m_TargetAssemblyTypeName: iten_spaw, Assembly-CSharp
-        m_MethodName: spawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: death
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 7083244888089757616}
         m_TargetAssemblyTypeName: heath, Assembly-CSharp
         m_MethodName: destroy_object
-        m_Mode: 1
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 10
           m_StringArgument: death
           m_BoolArgument: 0
         m_CallState: 2
-  anti_nock: 0
+  anti_nock: 1
+  time_wait_attack: 0
 --- !u!114 &4970995117228425933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517ad94138bc1a24da3e9b9dbf902836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Game_spawn: {fileID: 6280324275503654913, guid: 39862d6e3066825448c43388a815491d, type: 3}
 --- !u!95 &4160368938381448577
 Animator:
   serializedVersion: 5
@@ -313,6 +289,7 @@ GameObject:
   - component: {fileID: 8560544416853599005}
   - component: {fileID: 3846357112443193104}
   - component: {fileID: 6253406988123032839}
+  - component: {fileID: 726771333727054247}
   m_Layer: 6
   m_Name: piece (2)
   m_TagString: Untagged
@@ -391,8 +368,8 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.017638028, y: -0.026457071}
   m_SpriteTilingProperty:
@@ -472,6 +449,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &726771333727054247
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559392056102621284}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &3374309223187769169
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +481,7 @@ GameObject:
   - component: {fileID: 2423408086480009034}
   - component: {fileID: 4357329515583955385}
   - component: {fileID: 5580615061491375878}
+  - component: {fileID: 489766918118725490}
   m_Layer: 6
   m_Name: piece (3)
   m_TagString: Untagged
@@ -563,8 +560,8 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.010582849, y: -0.031748414}
   m_SpriteTilingProperty:
@@ -644,6 +641,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &489766918118725490
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3374309223187769169}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &5635873615476490254
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +673,7 @@ GameObject:
   - component: {fileID: 8905415061549131918}
   - component: {fileID: 4098425033763066000}
   - component: {fileID: 6775147574673706613}
+  - component: {fileID: 1940566925619825776}
   m_Layer: 6
   m_Name: piece (1)
   m_TagString: Untagged
@@ -735,8 +752,8 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: -0.0052913725, y: -0.021165729}
   m_SpriteTilingProperty:
@@ -816,6 +833,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &1940566925619825776
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635873615476490254}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &7114026208296760277
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +865,7 @@ GameObject:
   - component: {fileID: 5752838743147494750}
   - component: {fileID: 4501539044078249141}
   - component: {fileID: 7283108316838515078}
+  - component: {fileID: 7195898950270241176}
   m_Layer: 6
   m_Name: piece
   m_TagString: Untagged
@@ -907,8 +944,8 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: -0.014110416, y: -0.010582864}
   m_SpriteTilingProperty:
@@ -988,3 +1025,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &7195898950270241176
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114026208296760277}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1

@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scenes\scrip\Player\attack_Player.cs" />
     <Compile Include="Assets\Scenes\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scenes\scrip\data\heath.cs" />
+    <Compile Include="Assets\Scenes\scrip\trap\trap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

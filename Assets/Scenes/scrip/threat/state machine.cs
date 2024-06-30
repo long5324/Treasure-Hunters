@@ -110,12 +110,13 @@ public class statemachine : MonoBehaviour
     }
     public void trans_state_idel()
     {
-        state_threat = state.idel;
+      
         on_attack = false;
         rig.velocity = new Vector2(0, rig.velocity.y);
         animator.SetBool("attack_end", false);
         dir_attack = 0;
         now_attack = false;
+        effect_skill.SetBool("on_attack", false);
     }
     public bool check_ground()
     {
@@ -145,7 +146,7 @@ public class statemachine : MonoBehaviour
     // Update is called once per frame
     private void LateUpdate()
     {
-        Debug.Log(state_threat);
+
         if (delay)
         {
             return;
@@ -213,7 +214,7 @@ public class statemachine : MonoBehaviour
                 {
                     dir_attack = tagert.transform.position.x > transform.position.x ? 1 : -1;
                 }
-                transform.localScale = new Vector2(dir_attack, transform.localScale.y);
+                transform.localScale = new Vector2(-dir_attack, transform.localScale.y);
                 rig.velocity = new Vector2(max_speed * 2 * dir_attack, rig.velocity.y);
                 if (check_ground())
                 {
@@ -223,6 +224,7 @@ public class statemachine : MonoBehaviour
                     dir_attack = 0;
                     now_attack = false;
                     state_threat = state.idel;
+                    effect_skill.SetBool("on_attack", false);
                 }
             }
 
@@ -274,5 +276,10 @@ public class statemachine : MonoBehaviour
     {
         effect_skill.SetTrigger("attack");
     }
-  
+    public void OnEffectSkill_pink_start()
+    {
+        effect_skill.SetTrigger("attack");
+        effect_skill.SetBool("on_attack", true);
+    }
+
 }

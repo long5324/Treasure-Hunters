@@ -13,7 +13,6 @@ public class heath : MonoBehaviour
     public UnityEvent event_death;
     public float anti_nock;
     public float time_wait_attack;
-    public float time_wait_destroy;
     public bool can_dame { get; set; }
     SpriteRenderer rend;
 
@@ -43,7 +42,7 @@ public class heath : MonoBehaviour
         }
         event_dame.Invoke();
     }
-    public void destroy_object()
+    public void destroy_object(float time_wait_destroy)
     {
         StartCoroutine(destroy_wait(time_wait_destroy));
     }

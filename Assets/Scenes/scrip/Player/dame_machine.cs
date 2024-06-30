@@ -73,10 +73,10 @@ public class dame_machine : MonoBehaviour
                                 rig_threat.velocity = new Vector2(0,rig_threat.velocity.y);
                                 if(threat_heath.curren_hp <= item.dame)
                                 {
-                                    rig_threat.velocity = new Vector2((item.foce_nock_death.x - threat_heath.anti_nock) * transform.localScale.x, item.foce_nock_death.y - threat_heath.anti_nock);
+                                    rig_threat.velocity = new Vector2((item.foce_nock_death.x - threat_heath.anti_nock>0? item.foce_nock_death.x - threat_heath.anti_nock:0) * transform.localScale.x, item.foce_nock_death.y - threat_heath.anti_nock > 0 ? item.foce_nock_death.y - threat_heath.anti_nock : 0);
                                 }
                                 else
-                                rig_threat.velocity = new Vector2((item.foce_nock.x - threat_heath.anti_nock) * transform.localScale.x, item.foce_nock.y-threat_heath.anti_nock);
+                                rig_threat.velocity = new Vector2((item.foce_nock.x - threat_heath.anti_nock>0? item.foce_nock.x - threat_heath.anti_nock:0) * transform.localScale.x, item.foce_nock.y-threat_heath.anti_nock>0? item.foce_nock.y - threat_heath.anti_nock:0);
                             }
                             threat_heath.dame_attack(item.dame);
 
