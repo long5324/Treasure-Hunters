@@ -5,6 +5,8 @@ using UnityEngine;
 public class trap : MonoBehaviour
 {
     public Animator attack_effect;
+    public GameObject amo;
+    public Transform position_shot;
     public float speed_attack;
     public float time_delay_attack_hit;
     
@@ -42,5 +44,9 @@ public class trap : MonoBehaviour
     public void on_effect_attack() {
         attack_effect.SetTrigger("attack");
     }
-
+    public void shot(){
+        GameObject amoc = Instantiate(amo,position_shot.position, Quaternion.identity);
+        amo am=amoc.GetComponent<amo>();
+        am.On(-transform.localScale.x);
+    }
 }

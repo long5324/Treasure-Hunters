@@ -241,7 +241,7 @@ MonoBehaviour:
           m_StringArgument: death
           m_BoolArgument: 0
         m_CallState: 2
-  anti_nock: 1
+  anti_nock: 3
   time_wait_attack: 0
 --- !u!114 &4970995117228425933
 MonoBehaviour:

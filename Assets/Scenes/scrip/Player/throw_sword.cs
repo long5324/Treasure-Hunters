@@ -12,6 +12,7 @@ public class throw_sword : MonoBehaviour
     public Vector2 force_nock_death;
     public LayerMask layerMaskThreat;
     public float speed;
+
     Rigidbody2D rb;
     Animator ant;
     private void Awake()
@@ -29,7 +30,6 @@ public class throw_sword : MonoBehaviour
         // Kiểm tra nếu đối tượng có layer là "map"
         if (other.gameObject.layer == LayerMask.NameToLayer("map"))
         {
-            
             ant.SetTrigger("end");
             rb.velocity = Vector2.zero;
         }

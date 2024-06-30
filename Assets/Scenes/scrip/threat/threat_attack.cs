@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEditor.Progress;
 
 public class attack : MonoBehaviour
@@ -59,7 +60,10 @@ public class attack : MonoBehaviour
                             player_move.rig.velocity = Vector2.zero;
                             float dir = transform.position.x > other.transform.position.x ? 1 : -1;
                             if (player_heath.curren_hp > item.dame)
+                            {
+                               
                                 player_move.rig.velocity = new Vector2((item.force_nock.x - player_heath.anti_nock) * dir, item.force_nock.y - player_heath.anti_nock);
+                            }
                             else
                             {
                                 player_move.rig.velocity = new Vector2((item.force_death.x - player_heath.anti_nock) * dir, item.force_death.y - player_heath.anti_nock);

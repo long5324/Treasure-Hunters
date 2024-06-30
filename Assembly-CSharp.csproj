@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scenes\scrip\Player\throw_sword.cs" />
     <Compile Include="Assets\Scenes\scrip\item\iten_spaw.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\animator.cs" />
+    <Compile Include="Assets\Scenes\scrip\trap\amo.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\movement.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\animator_skill.cs" />
     <Compile Include="Assets\Scenes\scrip\item\force_piece.cs" />
