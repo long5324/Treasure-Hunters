@@ -18,9 +18,7 @@ public class iten_spaw : MonoBehaviour
                 player_machine.has_sword = true;
                 Animator player_anim = player_machine.GetComponent<Animator>();
                 player_anim.SetBool("has_sword", true);
-                GameObject s= GameObject.Find("sword_throw");
-                s.GetComponent<Collider2D>().enabled = true;
-                s.SetActive(false);
+                
                 Destroy(gameObject);
             }
         }

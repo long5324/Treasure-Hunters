@@ -4,13 +4,16 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 using static UnityEngine.Color;
 using static UnityEngine.UI.Image;
 
 public class dame_machine : MonoBehaviour
 {
     public LayerMask layerMaskthreat;
-   
+    public Transform Camera;
+    public Transform PCamera;
+    Vector2 DefaulPosition;
     [System.Serializable]
    public class if_skill {
         [Header("info_skill")]
@@ -93,4 +96,16 @@ public class dame_machine : MonoBehaviour
         state.delay = false;
     }
 
+    public void OnatatckEffect()
+    {
+        if (Camera != null)
+        {
+            Camera.position = new Vector3(Camera.position.x + PCamera.localPosition.x * transform.localScale.x, Camera.position.y + PCamera.localPosition.y, Camera.position.z);
+            DefaulPosition = (Vector2)Camera.position;
+        }
+    }
+    public void resetPosition()
+    {
+        Camera.position = DefaulPosition;
+    }
 }

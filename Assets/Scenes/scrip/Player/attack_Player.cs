@@ -144,9 +144,12 @@ public class attack_Player : MonoBehaviour
     }
     public void throw_s()
     {
+        ob_throw_sword.GetComponent<Collider2D>().enabled = true;
+        ob_throw_sword.SetActive(false);
         ob_throw_sword.SetActive(true) ;
         ob_throw_sword.transform.position = transform.position;
         throw_sword ts = ob_throw_sword.GetComponent<throw_sword>();
+        ;
         if (ts != null)
         {
             ts.dir = (int)gameObject.transform.localScale.x;

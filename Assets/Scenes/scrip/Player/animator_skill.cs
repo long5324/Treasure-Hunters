@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class animator_skill : MonoBehaviour
 {
     Animator amsk;
+   
     void Start()
     {
         amsk = GetComponent<Animator>();    
@@ -16,8 +17,5 @@ public class animator_skill : MonoBehaviour
         
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
