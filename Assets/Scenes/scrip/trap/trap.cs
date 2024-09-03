@@ -5,8 +5,6 @@ using UnityEngine;
 public class trap : MonoBehaviour
 {
 
-    public Animator attack_effect;
-    public GameObject amo;
     public Transform position_shot;
     public float speed_attack;
     public float time_delay_attack_hit;
@@ -16,10 +14,14 @@ public class trap : MonoBehaviour
     Animator anim;
     Coroutine coroutine;
     private void Awake()
-    {
+    {      
+       
         dir_attack = -paren.transform.localScale.x;
-        anim = GetComponent<Animator>();
-        
+        anim = GetComponent<Animator>(); 
+    }
+    private void OnEnable()
+    {
+        delay_attack = false;
     }
     private void LateUpdate()
     {
@@ -29,7 +31,7 @@ public class trap : MonoBehaviour
             if(anim != null)
             {
                anim.SetTrigger("attack");
-                coroutine= StartCoroutine(Delay(speed_attack));
+               coroutine= StartCoroutine(Delay(speed_attack));
             }
         }
     }
@@ -44,14 +46,15 @@ public class trap : MonoBehaviour
         delay_attack = true;
         coroutine = StartCoroutine(Delay(time_delay_attack_hit));
     } 
-    public void on_effect_attack() {
-        attack_effect.SetTrigger("attack");
-    }
     public void shot(){
-       
-        GameObject amoc = Instantiate(amo,position_shot.position, Quaternion.identity);
-        amo am=amoc.GetComponent<amo>();
-        am.On(dir_attack);
+        GameObject Amo = PoolingControler.Instance.SpawnAmo("Amo" + gameObject.tag);
+        if (Amo == null)
+        {
+            return;
+        }
+        Amo.transform.position = position_shot.position;
+        Amo.GetComponent<amo>().On(dir_attack);
+
     }
     public void DisRender()
     {

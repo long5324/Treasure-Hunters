@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,22 +9,31 @@ public class setuptrap : MonoBehaviour
    public GameObject TommeTop;
    [Range(1, 3)]
    public int Height=1;
-    private void Awake()
+    private void OnValidate()
     {
-
-        if (Height == 1)
+       
+        if (TommeTop == null || TommeBotoon == null || TommeMid == null)
         {
-            
-            TommeTop.transform.position = TommeBotoon.transform.position;
-            TommeBotoon.SetActive(false);
-            TommeMid.SetActive(false);  
+            Debug.LogWarning("Một hoặc nhiều GameObject chưa được gán.");
+            return;
         }
-        if (Height == 2)
+        // Thực hiện các thay đổi trạng thái và vị trí an toàn
+        switch (Height)
         {
-            TommeMid.transform.position = TommeBotoon.transform.position;
+            case 1:
+                TommeBotoon.SetActive(false);
+                TommeMid.SetActive(false);
+                break;
+            case 2:
+                TommeBotoon.SetActive(false);
+                TommeMid.SetActive(true);
+                break;
 
-            TommeBotoon.SetActive(false);
-           
+            default:
+                TommeBotoon.SetActive(true);
+                TommeMid.SetActive(true);
+                break;
         }
     }
+
 }

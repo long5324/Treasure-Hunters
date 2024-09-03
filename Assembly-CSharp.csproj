@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{32C3BDE6-E125-3128-82C1-25D0441455A3}</ProjectGuid>
+    <ProjectGuid>{CC330976-300F-8457-AB79-573EE8E82B0B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,21 +58,30 @@
     <Analyzer Include="D:\Program Files\2022.3.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scenes\scrip\ground\ground_fl.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\dame_machine.cs" />
+    <Compile Include="Assets\Scenes\scrip\ground\paralax_bg.cs" />
+    <Compile Include="Assets\Scenes\scrip\performant\CullingControler.cs" />
+    <Compile Include="Assets\Scenes\scrip\UI\UIControl.cs" />
+    <Compile Include="Assets\Scenes\ScripTableObject\Bar.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\groudcheck.cs" />
     <Compile Include="Assets\Scenes\scrip\threat\state machine.cs" />
+    <Compile Include="Assets\Scenes\ScripTableObject\ItemTable.cs" />
+    <Compile Include="Assets\Scenes\scrip\item\EffectItem.cs" />
     <Compile Include="Assets\Scenes\scrip\threat\threat_attack.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\throw_sword.cs" />
     <Compile Include="Assets\Scenes\scrip\item\iten_spaw.cs" />
+    <Compile Include="Assets\Scenes\scrip\Pooling\PoolingControler.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\animator.cs" />
     <Compile Include="Assets\Scenes\scrip\trap\amo.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\movement.cs" />
+    <Compile Include="Assets\Scenes\scrip\item\AnimatorItem.cs" />
     <Compile Include="Assets\Scenes\scrip\trap\setuptrap.cs" />
-    <Compile Include="Assets\Scenes\scrip\paralax_bg.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\animator_skill.cs" />
     <Compile Include="Assets\Scenes\scrip\item\force_piece.cs" />
     <Compile Include="Assets\Scenes\scrip\Player\attack_Player.cs" />
     <Compile Include="Assets\Scenes\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scenes\scrip\item\ItemControler.cs" />
     <Compile Include="Assets\Scenes\scrip\data\heath.cs" />
     <Compile Include="Assets\Scenes\scrip\trap\trap.cs" />
   </ItemGroup>

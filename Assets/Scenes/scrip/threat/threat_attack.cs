@@ -11,6 +11,8 @@ public class attack : MonoBehaviour
     [System.Serializable]
     public struct attack_if
     {
+        [Header("Effect Attack")]
+        public bool Poisoned;
         [Header("info_skill")]
         public string name;
         public float dame;
@@ -60,14 +62,8 @@ public class attack : MonoBehaviour
                             player_move.rig.velocity = Vector2.zero;
                             float dir = transform.position.x > other.transform.position.x ? 1 : -1;
                             if (player_heath.curren_hp > item.dame)
-                            {
-                               
                                 player_move.rig.velocity = new Vector2((item.force_nock.x - player_heath.anti_nock) * dir, item.force_nock.y - player_heath.anti_nock);
-                            }
-                            else
-                            {
-                                player_move.rig.velocity = new Vector2((item.force_death.x - player_heath.anti_nock) * dir, item.force_death.y - player_heath.anti_nock);
-                            }
+                            
                             StartCoroutine(ResetDelay(player_move, item.time_cc-player_heath.anti_nock));
                             player_heath.dame_attack(item.dame);
                         }
@@ -104,6 +100,9 @@ public class attack : MonoBehaviour
                                 player_move.rig.velocity = new Vector2((item.force_death.x - player_heath.anti_nock) * -dir, item.force_death.y - player_heath.anti_nock);
                             }
                             StartCoroutine(ResetDelay(player_move, item.time_cc - player_heath.anti_nock));
+                            if(item.Poisoned)
+                            player_heath.PoisonedEffect(2);
+                            player_move.SpeedDown(4);
                             player_heath.dame_attack(item.dame);
                         }
                     }

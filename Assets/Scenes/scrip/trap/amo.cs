@@ -7,6 +7,7 @@ using static UnityEditor.Progress;
 public class amo : MonoBehaviour
 {
     public LayerMask LayerDame;
+    public LayerMask LayerMap;
     public float Dame;
     public Vector2 ForceNock;
     public float dir;
@@ -32,11 +33,15 @@ public class amo : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other == null)
-        {
-            Debug.LogError("other is null");
+        Debug.Log(2);
+        if (LayerMap == (LayerMap | (1 << other.gameObject.layer)))
+        { Debug.Log(1);
+           
+            rig.velocity = Vector2.zero;
+            DameEvent.Invoke();
             return;
         }
+        Debug.Log(2);
         // Kiểm tra nếu đối tượng có layer là "map"
         if (LayerDame == (LayerDame | (1 << other.gameObject.layer)))
         {
@@ -55,10 +60,6 @@ public class amo : MonoBehaviour
                     float dir = transform.position.x > other.transform.position.x ? 1 : -1;
                     if (player_heath.curren_hp > Dame)
                         player_move.rig.velocity = new Vector2((ForceNock.x - player_heath.anti_nock) * -dir, ForceNock.y - player_heath.anti_nock);
-                    else
-                    {
-                        player_move.rig.velocity = new Vector2((ForceNock.x - player_heath.anti_nock) * -dir, ForceNock.y - player_heath.anti_nock);
-                    }
                     StartCoroutine(ResetDelay(player_move, TimeCC - player_heath.anti_nock));
                     player_heath.dame_attack(Dame);
                 }
@@ -72,7 +73,7 @@ public class amo : MonoBehaviour
     private IEnumerator Delay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     private IEnumerator ResetDelay(movement state, float delay)
     {

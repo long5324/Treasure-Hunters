@@ -87,7 +87,7 @@ public class statemachine : MonoBehaviour
         if (draw_fl_attack)
         {
             Gizmos.color = UnityEngine.Color.red;
-            Gizmos.DrawWireCube(new Vector2(transform.position.x + dir_fl_attack.x * transform.localScale.x, transform.position.y + dir_fl_attack.y), size_fl_attack); ;
+            Gizmos.DrawWireCube(new Vector2(transform.position.x + dir_fl_attack.x * transform.localScale.x, transform.position.y + dir_fl_attack.y), size_fl_attack);
         }
     }
 
